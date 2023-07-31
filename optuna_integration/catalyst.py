@@ -1,3 +1,4 @@
+import optuna
 from optuna._deprecated import deprecated_class
 from packaging import version
 
@@ -27,4 +28,13 @@ class CatalystPruningCallback(OptunaPruningCallback):
     See the Catalyst's documentation for the detailed description.
     """  # NOQA
 
-    pass
+    def __init__(
+        self,
+        trial: "optuna.Trial",
+        loader_key: str,
+        metric_key: str,
+        minimize: bool,
+        min_delta: float = 1e-6,
+    ):
+        _imports.check()
+        super().__init__(trial, loader_key, metric_key, minimize, min_delta)
